@@ -1,0 +1,23 @@
+version: '3.8'
+
+services:
+  mongo:
+    image: mongo
+    container_name: mongo-ul
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: secret
+    ports:
+      - '27017:27017'
+    volumes:
+      - mongo_data:/data/db
+    networks:
+      - ul_network
+
+volumes:
+  mongo_data:
+
+networks:
+  ul_network:
+    name: ul_network # 🔥 This ensures the network is shared
